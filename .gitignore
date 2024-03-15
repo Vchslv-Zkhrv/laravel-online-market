@@ -1,0 +1,7 @@
+.env
+.venv
+*.lock*
+.nvimrc
+.session
+__pycache__
+
