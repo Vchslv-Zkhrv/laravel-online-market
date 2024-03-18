@@ -10,4 +10,5 @@ This is a simple pet project that I decided to write in order to practice in Lar
 - [ ] Bootstrap frontend
 - [ ] Laravel backend
 - [ ] Test coverage 50%
-- [ ] Docker
+- [x] Docker compose
+- [x] Nginx
