@@ -61,7 +61,7 @@ my @categories = listdir('scrapped');
 foreach my $c (@categories) {
 
   print "\n" . $c . "\n";
-  my $stmt = qq(INSERT INTO categories (name, created_at) VALUES ('$c', '$dt'));
+  my $stmt = qq(INSERT INTO categories (name, image_id, created_at) VALUES ('$c', $image_id, '$dt'));
   $dbh->do($stmt) or die $DBI::errstr;
   `cp 'scrapped/$c/cover.jpg' '$volume_path/$image_id.jpg'`;
   $image_id++;
@@ -70,7 +70,7 @@ foreach my $c (@categories) {
   foreach my $s (@subcategories) {
 
       print '--' . $s . "\n";
-      my $stmt = qq(INSERT INTO subcategories (name, category_id, created_at) VALUES ('$s', $category_id, '$dt'));
+      my $stmt = qq(INSERT INTO subcategories (name, category_id, image_id, created_at) VALUES ('$s', $category_id, $image_id, '$dt'));
       $dbh->do($stmt) or die $DBI::errstr;
       `cp 'scrapped/$c/$s/cover.jpg' '$volume_path/$image_id.jpg'`;
       $image_id++;
@@ -87,7 +87,7 @@ foreach my $c (@categories) {
 
           my $product_data_str = decode_json $_;
           my %product_data = %{$product_data_str};
-          my $stmt = qq(INSERT INTO products (name, sku, price, subcategory_id, created_at) VALUES ('$p', $product_data{sku}, $product_data{price}, $subcategory_id, '$dt'));
+          my $stmt = qq(INSERT INTO products (name, sku, price, subcategory_id, image_id, created_at) VALUES ('$p', $product_data{sku}, $product_data{price}, $subcategory_id, $image_id, '$dt'));
           $dbh->do($stmt) or die $DBI::errstr;
           my $specs_ref = %product_data{specs};
           my %specs = %{$specs_ref};

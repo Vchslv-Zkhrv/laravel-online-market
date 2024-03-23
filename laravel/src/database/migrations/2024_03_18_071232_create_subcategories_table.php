@@ -17,6 +17,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string("name")->nullable(False)->unique("idx_subcategory_name");
             $table->unsignedBigInteger("category_id")->nullable(False)->index("id_subcategory_category");
+            $table->unsignedBigInteger("image_id")->nullable(True);
 
             $table->foreign("category_id", "fkey_subcategory_category")->on("categories")->references("id");
 
