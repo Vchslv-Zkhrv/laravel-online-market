@@ -51,6 +51,7 @@ sub scrap_product {
   print $_[3];
   print "\n";
 
+  $_[4] =~ s/\n/ /r;
   my $mkdir = system("mkdir '$_[4]'");
   if ($mkdir == 0) {
 

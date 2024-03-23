@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("name")->nullable(False)->unique("idx_products_name");
+            $table->string("name")->nullable(False)->index("id_products_name");
             $table->unsignedInteger("price")->nullable(True);
-            $table->unsignedBigInteger("sku")->nullable(False)->unique("idx_products_sku");
+            $table->unsignedBigInteger("sku")->nullable(False)->index("id_products_sku");
             $table->unsignedInteger("balance")->nullable(False)->default(0);
             $table->unsignedBigInteger("image_id")->nullable(True);
         });

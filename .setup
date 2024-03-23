@@ -1,0 +1,5 @@
+cd laravel/src
+docker compose up -d
+php artisan migrate
+cd ../../parsers
+perl dumper.pl
